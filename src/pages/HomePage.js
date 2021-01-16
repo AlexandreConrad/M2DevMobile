@@ -1,17 +1,18 @@
 /** Import React **/
 import React, {useEffect, useState} from 'react';
-import { StyleSheet,ActivityIndicator} from 'react-native';
+import { StyleSheet,ActivityIndicator,View} from 'react-native';
 
 /** Import UI Kitten et Redux **/
-import {Layout, List,Button} from "@ui-kitten/components";
+import {Layout, List,Button,Input } from "@ui-kitten/components";
 import {connect} from 'react-redux';
 
 /** Call API **/
 import ObjectListItemsMostPopular from "../components/ListMostPopular";
-import {getMostPopular} from "../Api/TheMovieDb";
+import {getMostPopular, getPeoplesByName} from "../Api/TheMovieDb";
 
 /** Import helpers favoris **/
 import utils from "../utils/utils";
+import Assets from "../defintions/Assets";
 
 const HomePage = ({navigation,favObjects}) => {
 
@@ -46,15 +47,28 @@ const HomePage = ({navigation,favObjects}) => {
         await setIsLoading(false);
     }
 
+    const searchByName = async() =>{
+        await setIsLoading(true);
+        await setDataAPI([]);
+        let response = await getPeoplesByName(name);
+        await setDataAPI(response.data.results);
+        await setIsLoading(false);
+    }
+
     return (
         <Layout style={styles.container}>
             {isLoading ?
                 (<ActivityIndicator size="large" color="#0000ff"/>) :
-                (<List
+                (<View>
+                    <Input placeholder="Search" onChangeText={(text) => setName(text)}/>
+                    <Button appearance='ghost' accessoryLeft={Assets.SearchIcon}/>
+                    <Button appearance='ghost' accessoryLeft={Assets.closeIcon}/>
+                    <List
                     data={dataAPI}
                     keyExtractor={(item, index) => (Math.floor(Math.random() * 0xFFFFFF)).toString(16).padStart(6, '0')}
                     renderItem={renderMostPopular}
-                    style={styles.list}/>)
+                    style={styles.list}/>
+                </View>)
             }
         </Layout>
     );

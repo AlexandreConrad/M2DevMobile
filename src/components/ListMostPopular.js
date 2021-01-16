@@ -11,7 +11,7 @@ import { Card, Text } from '@ui-kitten/components';
  *  Carte apercu de l'acteur
  **/
 const ObjectListItems = ({dataAPI,onClick}) => {
-    //console.log(dataAPI);
+
     return (
         <TouchableOpacity onPress={() => (onClick(dataAPI))}>
             <Layout style={styles.container}>
@@ -21,24 +21,20 @@ const ObjectListItems = ({dataAPI,onClick}) => {
                         <Text>{dataAPI.known_for_department}</Text>
                     </View>
                 </View>
-
             </Layout>
         </TouchableOpacity>
     );
 }
-
+//<Text>{dataAPI.known_for.slice(0,3).map(x => x.original_title).join(", ")}</Text>
 export default ObjectListItems;
-/**
-<Card>
-    <Text>{dataAPI.name}</Text>
-    <Text>{dataAPI.known_for_department}</Text>
-</Card>**/
 
 const styles = StyleSheet.create({
     container: {
         flex:1,
         alignItems: 'center',
         justifyContent: 'center',
+        padding : 10,
+        width : '100%',
     },
     rightCard: {
         marginLeft: 10,

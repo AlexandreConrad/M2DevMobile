@@ -27,6 +27,9 @@ const Assets = {
     FavIcon : (props) => (
         <Icon {...props} name='heart-outline'/>
     ),
+    closeIcon : (props) => (
+        <Icon {...props} name='close-outline'/>
+    ),
 };
 
 export default Assets;
