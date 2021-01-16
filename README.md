@@ -23,4 +23,4 @@ Cela permet d'éviter un crash de l'application, qui n'a pas été corrigé par 
 
 Tous les calls API. 
 
-Pour les détails de l'acteur, la page est découpé en deux "scroolsBar" à cause du grands nombres d'informations. Il faut donc faire attention à bien scrool les deux parties car toutes les informations demandées sont affichées.
+Pour les détails de l'acteur, la page est découpé en deux "scroolsBar" à cause du grands nombres d'informations et des "flatList". Il faut donc faire attention à bien scrool les deux parties de la page car toutes les informations demandées sont affichées et fonctionnelle.
