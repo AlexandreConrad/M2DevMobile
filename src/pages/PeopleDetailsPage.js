@@ -1,6 +1,6 @@
 /** Import React **/
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, Text} from 'react-native';
+import {StyleSheet, Text, ScrollView, ActivityIndicator,View} from 'react-native';
 
 /** UI Kitten **/
 import {Layout, Button, List} from "@ui-kitten/components";
@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 
 /** Import helpers favoris **/
 import utils from "../utils/utils";
-import {getCreditsByID, getMostPopular} from "../Api/TheMovieDb";
+import {getCreditsByID, getMostPopular, getMostPopularByID} from "../Api/TheMovieDb";
 import renderCredits from "../components/renderCredits";
 
 const PeopleDetailsPage = ({navigation,route,favObjects,dispatch}) => {
@@ -18,12 +18,14 @@ const PeopleDetailsPage = ({navigation,route,favObjects,dispatch}) => {
     /** Fonction qui mets à jour la liste au début de la page **/
     useEffect(() => {
         (async () => {
-            await getCredits();
+            await getCreditsAndInformations();
         })();
     }, [favObjects]);
 
     /** Constantes **/
     const [credits , setCredits] = useState([]);
+    const [informationPeople , setInformationPeople] = useState([]);
+    const [isLoading , setIsLoading] = useState(false);
 
     const displaySavePeople = () => {
         //Fonction pour le switch de boutton
@@ -46,26 +48,37 @@ const PeopleDetailsPage = ({navigation,route,favObjects,dispatch}) => {
     }
 
     /** Récupération de la liste des crédits de la personne **/
-    const getCredits = async() => {
+    const getCreditsAndInformations = async() => {
+        await setIsLoading(true);
         await setCredits([]);
+        await setInformationPeople([]);
         let response = await getCreditsByID(route.params.dataAPI.id);
+        let information = await getMostPopularByID(route.params.dataAPI.id);
         await setCredits(response.data.cast);
-        console.log(response.data);
-    }
+        await setInformationPeople(information.data);
+        await setIsLoading(false);
+    };
 
     return (
         <Layout style={styles.container}>
-            <Text> Nom = {route.params.dataAPI.id}</Text>
-            <Text> Id = {route.params.dataAPI.name}</Text>
-            <Text> Departement = {route.params.dataAPI.known_for_department}</Text>
-            <Text> Birth = {route.params.dataAPI.birthday}</Text>
-            <Text> Death = {route.params.dataAPI.deathday}</Text>
-            <Text> Biographie = {route.params.dataAPI.biography}</Text>
-            <Layout>{displaySavePeople()}</Layout>
-            <List
-                data={credits}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={renderCredits}/>
+            {isLoading ?
+                (<ActivityIndicator size="large" color="#0000ff"/>) :
+                (<View>
+                        <ScrollView>
+                            <Text> Nom = {route.params.dataAPI.name}</Text>
+                            <Text> Id = {route.params.dataAPI.id}</Text>
+                            <Text> Departement = {route.params.dataAPI.known_for_department}</Text>
+                            <Text> Birth = {informationPeople.birthday}</Text>
+                            <Text> Death = {informationPeople.deathday}</Text>
+                            <Text> Biographie = {informationPeople.biography}</Text>
+                            <Layout>{displaySavePeople()}</Layout>
+                        </ScrollView>
+                            <List
+                                data={credits}
+                                keyExtractor={(item, index) => (Math.floor(Math.random() * 0xFFFFFF)).toString(16).padStart(6, '0')}
+                                renderItem={renderCredits}/>
+                    </View>)
+            }
         </Layout>
     );
 }

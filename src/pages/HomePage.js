@@ -52,8 +52,9 @@ const HomePage = ({navigation,favObjects}) => {
                 (<ActivityIndicator size="large" color="#0000ff"/>) :
                 (<List
                     data={dataAPI}
-                    keyExtractor={(item) => item.id.toString()}
-                    renderItem={renderMostPopular}/>)
+                    keyExtractor={(item, index) => (Math.floor(Math.random() * 0xFFFFFF)).toString(16).padStart(6, '0')}
+                    renderItem={renderMostPopular}
+                    style={styles.list}/>)
             }
         </Layout>
     );
@@ -66,6 +67,9 @@ const styles = StyleSheet.create({
         flex: 2,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    list: {
+        width :'100%',
     },
 });
 
