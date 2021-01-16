@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet} from 'react-native';
 import {TouchableOpacity} from "react-native";
-import { Card, Text } from '@ui-kitten/components';
+import { Text } from '@ui-kitten/components';
 
 /** Import UI Kitten **/
 import {Layout} from "@ui-kitten/components";

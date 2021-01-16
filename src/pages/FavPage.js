@@ -12,8 +12,8 @@ import {connect} from "react-redux";
 import utils from "../utils/utils";
 
 /** Call API **/
-import {getWeatherByID} from "../Api/OpenWeatherMap";
 import ObjectListItems from "../components/ListMostPopular";
+import {getMostPopularByID} from "../Api/TheMovieDb";
 
 const FavPage = ({navigation,favObjects}) => {
 
@@ -32,8 +32,7 @@ const FavPage = ({navigation,favObjects}) => {
         let temp = [];
         try{
             for(const id of favObjects) {
-                //temp.push(getObjectByID);
-                let response = await getWeatherByID(id);
+                let response = await getMostPopularByID(id);
                 await temp.push(response.data);
             }
             setListFavoris(temp);
@@ -42,12 +41,12 @@ const FavPage = ({navigation,favObjects}) => {
         }
     }
 
-    /** Navigations vers l'item  **/
+    /** Navigations vers la personne  **/
     const navigationOnClick = async(dataAPI) => {
         navigation.navigate("ViewObjectPage", {dataAPI});
     }
 
-    /** Retourne mon composant aperçu d'object **/
+    /** Retourne mon composant aperçu d'une personne **/
     const renderItems = ({item}) => {
         return (<ObjectListItems dataAPI={item} onClick={navigationOnClick}/>);
     }

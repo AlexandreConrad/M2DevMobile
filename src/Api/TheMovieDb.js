@@ -29,3 +29,8 @@ async function callTheMovieDbAPI(endpoint) {
 export async function getMostPopular() {
     return await callTheMovieDbAPI(`person/popular?`);
 };
+
+/** Call API pour les personnes by ID **/
+export async function getMostPopularByID(id) {
+    return await callTheMovieDbAPI(`person/${id}?`);
+};

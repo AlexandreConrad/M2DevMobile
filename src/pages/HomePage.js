@@ -18,7 +18,7 @@ const HomePage = ({navigation,favObjects}) => {
     /** Constantes **/
     const [isLoading , setIsLoading] = useState(false);
     const [dataAPI , setDataAPI ] = useState([]);
-    const [cityName, setCityName] = useState("");
+    const [name, setName] = useState("");
 
     /** Permet la navigation vers une personne **/
     const navigationOnClick = async(dataAPI) => {
