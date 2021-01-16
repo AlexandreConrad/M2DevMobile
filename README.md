@@ -16,7 +16,11 @@
 
 ## Remarques éventuelles
 
-L'application à été codée sur un émulateur android (Pixel 3a avec android 10.0+.
+L'application à été codée sur un émulateur android (Pixel 3a avec android 10.0+).
 
 La fonction "Recherche par nom" fonctionne lorsqu'elle est décommentée, mais elle cause un problème avec les favoris, j'ai décidé de ne pas la rendre disponible. 
 Cela permet d'éviter un crash de l'application, qui n'a pas été corrigé par manque de temps.
+
+Tous les calls API. 
+
+Pour les détails de l'acteur, la page est découpé en deux "scroolsBar" à cause du grands nombres d'informations. Il faut donc faire attention à bien scrool les deux parties car toutes les informations demandées sont affichées.
