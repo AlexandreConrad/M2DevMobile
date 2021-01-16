@@ -9,12 +9,11 @@ import {Layout, List} from "@ui-kitten/components";
 import {connect} from "react-redux";
 
 /** Import helpers / Utils **/
-import ObjectListItems from "../components/ObjectListItems";
-import fakeCallApiObject from "../helpers/fakeCallApiObject";
 import utils from "../utils/utils";
 
 /** Call API **/
 import {getWeatherByID} from "../Api/OpenWeatherMap";
+import ObjectListItems from "../components/ListMostPopular";
 
 const FavPage = ({navigation,favObjects}) => {
 
@@ -41,12 +40,6 @@ const FavPage = ({navigation,favObjects}) => {
         }catch (error){
             console.log("Erreur RefreshList");
         }
-    }
-
-    const getObjectByID = (id) => {
-        for (const o of fakeCallApiObject)
-            if(o.id === id)
-                return o;
     }
 
     /** Navigations vers l'item  **/

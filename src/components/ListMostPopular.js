@@ -1,20 +1,20 @@
 /** Import React **/
 import React from 'react';
-import { StyleSheet, Text} from 'react-native';
+import { StyleSheet} from 'react-native';
 import {TouchableOpacity} from "react-native";
+import { Card, Text } from '@ui-kitten/components';
 
 /** Import UI Kitten **/
 import {Layout} from "@ui-kitten/components";
 
 /**
- *  Aperçu de mon objet
- *  Nous pouvons afficher ce qu'on veut
+ *  Carte apercu de l'acteur
  **/
 const ObjectListItems = ({dataAPI,onClick}) => {
     return (
         <TouchableOpacity onPress={() => (onClick(dataAPI))}>
             <Layout style={styles.container}>
-                <Text>{dataAPI.name}</Text>
+                    <Text>{dataAPI.name}</Text>
             </Layout>
         </TouchableOpacity>
     );
@@ -29,5 +29,3 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-
-
