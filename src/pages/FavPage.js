@@ -53,7 +53,6 @@ const FavPage = ({navigation,favObjects}) => {
 
     return (
         <Layout style={styles.container}>
-            <Text>Page Fav !</Text>
             <List
                 data={listFavoris}
                 keyExtractor={(item)=>item.id.toString()}

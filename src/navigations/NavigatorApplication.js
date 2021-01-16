@@ -10,7 +10,7 @@ import Assets from "../defintions/Assets";
 /** Import de mes pages **/
 import HomePage from "../pages/HomePage";
 import FavPage from "../pages/FavPage";
-import ObjectDetailsPage from "../pages/ObjectDetailsPage";
+import ObjectDetailsPage from "../pages/PeopleDetailsPage";
 
 /** Import UIKITTEN**/
 import { NavigationContainer } from '@react-navigation/native';

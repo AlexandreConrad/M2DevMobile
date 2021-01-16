@@ -34,3 +34,8 @@ export async function getMostPopular() {
 export async function getMostPopularByID(id) {
     return await callTheMovieDbAPI(`person/${id}?`);
 };
+
+/** Call API pour les crédits by ID **/
+export async function getCreditsByID(id) {
+    return await callTheMovieDbAPI(`person/${id}/combined_credits?`);
+};
